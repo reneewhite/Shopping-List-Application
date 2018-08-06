@@ -1,0 +1,40 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>home</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>Item Name</ion-label>
+    <ion-input type="text" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Quantity</ion-label>
+    <ion-input type="text" [(ngModel)]="quantity"></ion-input> 
+  </ion-item>
+  <button ion-button stacked (click)="AddShoppingItems()">Add Item</button>
+  <ion-list>
+    <h4>Added Items</h4>
+        <ion-item-sliding *ngFor="let item of items">
+                <ion-item >
+                    {{item?.name}} 
+                    {{item?.quantity}}
+                  </ion-item>
+            <ion-item-options>
+              <button id="lol" ion-button  color="danger" icon-only (click)="removeItem(item.keyname)"><ion-icon name="trash"></ion-icon></button>
+              <button id="lol" ion-button color="secondary" icon-only (click)="updateItem(item.keyname, item.name, item.quantity)">update</button>
+            </ion-item-options>
+          </ion-item-sliding>
+           
+  </ion-list>
+
+</ion-content>
+
