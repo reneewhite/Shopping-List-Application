@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>home</ion-title>
+  <ion-navbar color="green">
+    <ion-title>Shopping</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,20 +18,38 @@
   </ion-item>
   <ion-item>
     <ion-label stacked>Quantity</ion-label>
-    <ion-input type="text" [(ngModel)]="quantity"></ion-input> 
+    <ion-input type="number" [(ngModel)]="quantity"></ion-input> 
   </ion-item>
-  <button ion-button stacked (click)="AddShoppingItems()">Add Item</button>
+  <br>
+  <button id="lol" ion-button stacked (click)="AddShoppingItems()">Add Item</button>
+<br>
+<br>
+<br>
   <ion-list>
-    <h4>Added Items</h4>
-        <ion-item-sliding *ngFor="let item of items">
-                <ion-item >
-                    {{item?.name}} 
-                    {{item?.quantity}}
-                  </ion-item>
-            <ion-item-options>
-              <button id="lol" ion-button  color="danger" icon-only (click)="removeItem(item.keyname)"><ion-icon name="trash"></ion-icon></button>
-              <button id="lol" ion-button color="secondary" icon-only (click)="updateItem(item.keyname, item.name, item.quantity)">update</button>
-            </ion-item-options>
+      <ion-list-header id="flow">
+          <h2>shopping list</h2>
+         
+         <ion-item-divider id="kool">
+            Items Added
+          </ion-item-divider>
+        </ion-list-header>
+        <ion-item-sliding  *ngFor="let item of items" >
+              <ion-item >
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-icon name="checkmark-circle"></ion-icon> {{item?.name}}
+                        </ion-col>
+                        <ion-col>
+                          {{item?.quantity}} 
+                        </ion-col>
+                     </ion-row> 
+                </ion-grid>
+              </ion-item>     
+            <ion-item-options side="right">
+              <button ion-button  color="green" icon-only (click)="removeItem(item.keyname)"><ion-icon name="trash"></ion-icon></button>
+              <button ion-button color="secondary" icon-only (click)="updateItem(item.keyname, item.name, item.quantity)"><ion-icon id="pop" name="create"></ion-icon></button>
+            </ion-item-options> 
           </ion-item-sliding>
            
   </ion-list>

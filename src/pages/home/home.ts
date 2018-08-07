@@ -16,9 +16,6 @@ declare var firebase;
 export class HomePage {
 items = [{
   name:'',
-  keyname:''
-},
-{
   quantity:'',
   keyname:''
 }];
@@ -28,7 +25,7 @@ item ={
 }
 check
 name = ''
-quantity
+quantity = ''
 controller = '';
 selectedKey = '';
 
@@ -40,29 +37,24 @@ selectedKey = '';
       snapshot.forEach((snap)=>{
         //console.log("----->"+snap.val());
        // console.log("----->"+snap.val().quantity);
-        this.items.push({name:snap.val().name,keyname:snap.key},{quantity:snap.val().quantity,keyname:snap.key});
+        this.items.push({keyname:snap.key,name:snap.val().name,quantity:snap.val().quantity});
         return false;
       });
-    });
-
-
-    
+    }); 
   }
 
-  AddShoppingItems(){
-    
+  AddShoppingItems(){ 
     if(this.controller == "update"){
-
       var database = firebase.database();
-    
-    database.ref('/fruits/'+ this.selectedKey).set({name:this.name,quantity:0});
+    database.ref('/fruits/'+ this.selectedKey).set({name:this.name,quantity:this.quantity});
     
     }else{
       this.item.name= this.name;
     this.item.quantity = this.quantity;
     var database = firebase.database();
     database.ref('/fruits/').push(this.item);
-    //this.controller = '';
+    this.name = null;
+    this.quantity = null;
     }
   }
 
@@ -72,6 +64,10 @@ selectedKey = '';
 
 
   removeItem(i){
+
+
+
+
     console.log(i)
     var database = firebase.database();  
     database.ref('/fruits/'+ i).remove();
